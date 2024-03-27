@@ -1,51 +1,43 @@
 import java.util.Scanner;
-
-class Student{ // суперкласс, родитель
-    String fam, name, otch;
-    int age;
-    Student(String fam, String name, String otch, int age){
-        this.fam = fam;
+abstract class UchebnoeZavedenie{
+    String name;
+    boolean isNew;
+    UchebnoeZavedenie(String name, boolean isNew ){
         this.name = name;
-        this.otch = otch;
-        this.age = age;
+        this.isNew = isNew;
     }
-    void show(){
-        System.out.println("Студент: "+fam+" "+name+" "+otch+" Возраст:"+age);
-    }
-    public String toString(){
-        return "Студент: "+fam+" "+name+" "+otch+" Возраст:"+age;
-    }
+    abstract public String toString();
 }
-
-class Asp extends Student { // подкласс, потомок
-    int arcticle;
-    Asp(String fam, String name, String otch, int age, int arcticle){
-        super(fam, name, otch, age);
-        this.arcticle = arcticle;
+class School extends UchebnoeZavedenie{
+    int pupils;
+    School(String name, boolean isNew, int pupils ){
+        super(name, isNew);
+        this.pupils = pupils;
     }
-    void show(){
-        System.out.println("Аспирант: "+fam+" "+name+" "+otch+" Возраст:"+age+" Статей:"+arcticle);
-    }
-    public String toString(){
-        return "Аспирант: "+fam+" "+name+" "+otch+" Возраст:"+age+" Статей:"+arcticle;
+    public String toString() {
+        return "Название школы: "+name+" Новое ли?: "+(isNew?"Да":"Нет")+" число школьников: "+pupils;
     }
 
 }
-class Scinetist extends Asp{
-
-    int patents;
-    Scinetist (String fam, String name, String otch, int age, int arcticle,int patents){
-        super(fam, name, otch, age,arcticle);
-        this.patents = patents;
+class College extends UchebnoeZavedenie{
+    boolean hasITSpeciality;
+    College(String name, boolean isNew, boolean hasITSpeciality ){
+        super(name, isNew);
+        this.hasITSpeciality = hasITSpeciality;
     }
-
-    void show(){
-        System.out.println("Ученый: "+fam+" "+name+" "+otch+" Возраст:"+age+" Статей:"+arcticle+" Патентов:"+patents);
+    public String toString() {
+        return "Название колледжа: "+name+" Новое ли?: "+(isNew?"Да":"Нет")+" Есть ли IT пециальности?: "+(hasITSpeciality?"Да":"Нет");
     }
-    public String toString(){
-        return "Ученый: "+fam+" "+name+" "+otch+" Возраст:"+age+" Статей:"+arcticle+" Патентов:"+patents;
+}
+class University extends UchebnoeZavedenie{
+    int rating;
+    University(String name, boolean isNew, int rating){
+        super(name, isNew);
+        this.rating = rating;
     }
-
+    public String toString() {
+        return "Название Вуза: "+name+" Новое ли?: "+(isNew?"Да":"Нет")+" Рейтинг: "+rating;
+    }
 }
 
 class Main
@@ -55,46 +47,41 @@ class Main
         System.out.print("N=");
         int N = sc.nextInt();
 
-
-
         System.out.println("**********************");
 
-        Student st[] = new Student[N];
+        UchebnoeZavedenie arr[] = new UchebnoeZavedenie[N];
 
         for (int i=0; i<N; i++){
             sc.nextLine();
-            System.out.print("Фамилия: ");
+            System.out.print("Название: ");
             String fam = sc.nextLine();
-            System.out.print("Имя: ");
-            String name = sc.nextLine();
-            System.out.print("Отчество: ");
-            String otch = sc.nextLine();
-            System.out.print("Возраст: ");
-            int age = sc.nextInt();
-            System.out.print("Студенты, аспиранты или ученые? (0, 1 или 2?)");
+            System.out.print("Новое ли?: ");
+            boolean isNew = sc.nextBoolean();
+            System.out.print("Школа, колледж или университет? (0, 1 или 2?)");
             int k = sc.nextInt();
-            if (k==0)
-                st[i] = new Student(fam, name, otch, age);
+            if (k==0) {
+                System.out.print("Введите колличество школьников: ");
+                int pupils = sc.nextInt();
+                arr[i] = new School(fam, isNew, pupils);
+            }
             else if(k==1) {
-                System.out.print("Статей: ");
-                int article = sc.nextInt();
+                System.out.print("Есть ли IT пециальности?: ");
+                boolean hasITspeciality = sc.nextBoolean();
 
-                st[i] = new Asp(fam, name, otch, age, article);
+                arr[i] = new College(fam, isNew, hasITspeciality);
             }
             else{
-                System.out.print("Статей: ");
-                int article = sc.nextInt();
-                System.out.print("Патентов: ");
-                int patents = sc.nextInt();
-                st[i] = new Scinetist(fam, name, otch, age, article, patents);
+                System.out.print("Рейтинг: ");
+                int rating = sc.nextInt();
+                arr[i] = new University(fam, isNew, rating);
             }
             if (i<N-1) System.out.println("-------------------");
         }
 
         System.out.println("**********************");
 
-        for(Student s : st){
-            System.out.println(s);
+        for(UchebnoeZavedenie u : arr){
+            System.out.println(u);
         }
 
     }
