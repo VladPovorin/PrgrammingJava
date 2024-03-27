@@ -31,6 +31,22 @@ class Asp extends Student { // подкласс, потомок
     }
 
 }
+class Scinetist extends Asp{
+
+    int patents;
+    Scinetist (String fam, String name, String otch, int age, int arcticle,int patents){
+        super(fam, name, otch, age,arcticle);
+        this.patents = patents;
+    }
+
+    void show(){
+        System.out.println("Ученый: "+fam+" "+name+" "+otch+" Возраст:"+age+" Статей:"+arcticle+" Патентов:"+patents);
+    }
+    public String toString(){
+        return "Ученый: "+fam+" "+name+" "+otch+" Возраст:"+age+" Статей:"+arcticle+" Патентов:"+patents;
+    }
+
+}
 
 class Main
 {
@@ -39,8 +55,7 @@ class Main
         System.out.print("N=");
         int N = sc.nextInt();
 
-        System.out.print("Студенты или аспиранты? (0 или 1?)");
-        int k = sc.nextInt();
+
 
         System.out.println("**********************");
 
@@ -56,12 +71,22 @@ class Main
             String otch = sc.nextLine();
             System.out.print("Возраст: ");
             int age = sc.nextInt();
+            System.out.print("Студенты, аспиранты или ученые? (0, 1 или 2?)");
+            int k = sc.nextInt();
             if (k==0)
                 st[i] = new Student(fam, name, otch, age);
-            else {
+            else if(k==1) {
                 System.out.print("Статей: ");
                 int article = sc.nextInt();
+
                 st[i] = new Asp(fam, name, otch, age, article);
+            }
+            else{
+                System.out.print("Статей: ");
+                int article = sc.nextInt();
+                System.out.print("Патентов: ");
+                int patents = sc.nextInt();
+                st[i] = new Scinetist(fam, name, otch, age, article, patents);
             }
             if (i<N-1) System.out.println("-------------------");
         }
