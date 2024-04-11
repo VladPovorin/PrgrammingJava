@@ -15,7 +15,7 @@ public class Main {
                 }
                 isValid = true;
             } catch (Exception e) {
-                System.out.println("Ошибка: " + e.getMessage());
+                System.out.println("Ошибка: некоректные данные! ");
                 sc.nextLine(); // очистить буфер ввода
             }
         } while (!isValid);
