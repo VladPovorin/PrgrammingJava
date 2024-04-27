@@ -104,19 +104,20 @@ public class Main {
         else{
             System.out.println("\n Животные, средний вес которых не максимальный: ");
         }
-        for(int i = 0;i < n;i++ ){
-            if (arr[i].getAvg_weight() != max){
-                arr[i].show();
-            }
-        }
         if (countAnimalsWithLatter == 0){
             System.out.println("\n"+ANSI_RED_BACKGROUND+"Нет животных, в имени которых есть буква 'е' или 'з' "+ANSI_RESET);
         }
         else{
             System.out.println("\n Животные, в имени которых есть буква 'е' или 'з': ");
         }
+
+
+
         for(int i = 0;i < n;i++ ){
             if (arr[i].getName().contains("е") || arr[i].getName().contains("Е") || arr[i].getName().contains("з") || arr[i].getName().contains("З")){
+                arr[i].show();
+            }
+            if (arr[i].getAvg_weight() != max){
                 arr[i].show();
             }
         }

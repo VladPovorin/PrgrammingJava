@@ -72,7 +72,7 @@ public class Main {
 //
 //            System.out.println("Введите размер крыла, см:");
 //            double wingSize = scanner.nextDouble();
-
+//            scanner.nextLine();
 
             //Для удобства и тестирования
             String name = birdsNames[r.nextInt(0,birdsNames.length)];
@@ -101,6 +101,7 @@ public class Main {
 //
 //            System.out.println("Введите максимальную скорость, км:");
 //            double maxVelocity = scanner.nextDouble();
+//            scanner.nextLine();
 
             //Для удобства и тестирования
             String name = mammalNames[r.nextInt(0,mammalNames.length)];
