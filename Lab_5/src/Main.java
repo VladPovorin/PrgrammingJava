@@ -2,9 +2,9 @@ import java.util.*;
 
 
 class College implements Comparable<College> {
-    int id, workshop_count;
-    String name;
-    boolean has_IT_spec;
+    private int id, workshop_count;
+    private String name;
+    private boolean has_IT_spec;
     College( int id,String name, int workshop_count, boolean has_IT_spec){
         this.id = id;
         this.name = name;
@@ -17,16 +17,16 @@ class College implements Comparable<College> {
                 +workshop_count+" есть ли IT специальности: "+(has_IT_spec==true?"Да":"Нет");
     }
 
-    int get_id(){
+    public int get_id(){
         return  id;
     }
-    int get_workshop_count(){
+    public int get_workshop_count(){
         return  workshop_count;
     }
-    String get_name(){
+    public String get_name(){
         return  name;
     }
-    boolean get_has_IT_spec(){
+    public boolean get_has_IT_spec(){
         return  has_IT_spec;
     }
 
